@@ -1,0 +1,10 @@
+CÁC BƯỚC LÀM TRONG JPA:
+- tạo package (com.fpt.entity, com.fpt.dal, com.fpt.controller)
+- tạo Persistence với IDE tool (from Database), phải dùng View -> Tool Windows -> Database
+- cấu hình Database / JDPC / Driver 
+
+
+NOTE:
+- trong JPA, dal: quản lý riêng entity manager
+- luôn có biến ID (@Id) của Persistence 
+- tìm hiểu thêm về khái niệm Lombok
