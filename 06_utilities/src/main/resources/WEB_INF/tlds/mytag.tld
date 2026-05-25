@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+    <tlib-version>1.0</tlib-version>
+    <short-name>mytag</short-name>
+    <uri>/WEB-INF/tlds/mytag</uri>
+    <!--1. Hàm doUpper() từ MyTLD.java-->
+    <function>
+        <name>chuhoa</name>
+        <function-class>ex.maven.tld.MyTLD</function-class>
+        <function-signature>
+            <!--1. Trừ primarity datatype, các datatype phải khai báo gói-->
+            <!--2. Phương thức chỉ khai báo thư viện (gói) của datatype mà không kèm tên của porameter-->
+            java.lang.String doUpper(java.lang.String)
+        </function-signature>
+    </function>
+    <function>
+        <name>chuthuong</name>
+        <function-class>ex.maven.tld.MyTLD</function-class>
+        <function-signature>
+            <!--1. Trừ primarity datatype, các datatype phải khai báo gói-->
+            <!--2. Phương thức chỉ khai báo thư viện (gói) của datatype mà không kèm tên của porameter-->
+            java.lang.String doLower(java.lang.String)
+        </function-signature>
+    </function>
+    <function>
+        <name>tong</name>
+        <function-class>ex.maven.tld.MyTLD</function-class>
+        <function-signature>
+            <!--1. Trừ primarity datatype, các datatype phải khai báo gói-->
+            <!--2. Phương thức chỉ khai báo thư viện (gói) của datatype mà không kèm tên của porameter-->
+            <!-- int là 1 trong 8 kiểu dữ liệu cơ bản nên không cần gói-->
+            int sum(int[])
+        </function-signature>
+    </function>
+    <!-- A validator verifies that the tags are used correctly at JSP
+          translation time. Validator entries look like this:
+       <validator>
+           <validator-class>com.mycompany.TagLibValidator</validator-class>
+           <init-param>
+              <param-name>parameter</param-name>
+              <param-value>value</param-value>
+           </init-param>
+       </validator>
+    -->
+    <!-- A tag library can register Servlet Context event listeners in
+         case it needs to react to such events. Listener entries look
+         like this:
+      <listener>
+          <listener-class>com.mycompany.TagLibListener</listener-class>
+      </listener>
+    -->
+</taglib>
