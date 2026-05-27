@@ -1,0 +1,2 @@
+- cần hoàn chỉnh mỗi project
+- tìm hiểu thêm về Lombok
