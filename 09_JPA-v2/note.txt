@@ -1,4 +1,6 @@
 - bước 1: thêm dependence đầy đủ trong file pom.xml
 - bước 2: tạo file persistence.xml trong thư mục META-INF (persistence.xml)
 - bước 3: tạo entity (BrandBean)
-- bước 4: ...
+- bước 4: tạo brand dal
+- bước 5: tạo brand controller (servlet)
+- bước 6: tạo Views (index, create, update)
