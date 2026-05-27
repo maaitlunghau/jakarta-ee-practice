@@ -1,0 +1,4 @@
+- bước 1: thêm dependence đầy đủ trong file pom.xml
+- bước 2: tạo file persistence.xml trong thư mục META-INF (persistence.xml)
+- bước 3: tạo entity (BrandBean)
+- bước 4: ...

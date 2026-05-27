@@ -1,2 +1,3 @@
 - cần hoàn chỉnh mỗi project
 - tìm hiểu thêm về Lombok
+- chuẩn bị làm assignment 1 để nộp EduNext
