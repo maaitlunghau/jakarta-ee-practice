@@ -1,0 +1,6 @@
+mục địch của tính năng Secutiry (Basic):
+- khi vào trang: sẽ hiển thị Alert yêu cầu nhập username & password hợp lệ
++ đúng => vào trang
++ sai => hiển thị thông báo lỗi 401 Unauthorized
+
+TÌNH TRẠNG: project chưa xong
