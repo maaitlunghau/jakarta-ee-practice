@@ -8,6 +8,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "products")
 public class Product {
+    public Product() {
+    }
+
+    public Product(String code, String name, Integer price, String image) {
+        this.code = code;
+        this.name = name;
+        this.price = price;
+        this.image = image;
+    }
+
     @Id // id của Persistence
 
     @Column(name = "code", nullable = false, length = 50)
