@@ -8,3 +8,8 @@ NOTE:
 - trong JPA, dal: quản lý riêng entity manager
 - luôn có biến ID (@Id) của Persistence 
 - tìm hiểu thêm về khái niệm Lombok
+
+TÌNH TRẠNG PROJECT HIỆN TẠI:
+- LỖI SERVER
+- không run được
+- có thể đang đụng port 
