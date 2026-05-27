@@ -1,0 +1,9 @@
+CÁCH LÀM:
+- tạo file login-error.jsp
+- tạo file login.jsp
+- cấu hình đường dẫn trong index.jsp
+- cấu hình security trong web.xml
+
+
+NOTE:
+- nội dung có trong thi (Authentication)
