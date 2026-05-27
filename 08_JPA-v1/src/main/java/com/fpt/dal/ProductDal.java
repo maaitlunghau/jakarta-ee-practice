@@ -77,7 +77,10 @@ public class ProductDal {
     }
 
     // 3.2. findByName() method
-    public Product findByName(String name) {
-        return em.find(Product.class, name);
+    public List<Product> findByName(String search) {
+        Query query = em.createQuery("SELECT p FROM Product p WHERE p.name LIKE :name");
+        query.setParameter("name", "%" + search + "%");
+
+        return query.getResultList();
     }
 }
