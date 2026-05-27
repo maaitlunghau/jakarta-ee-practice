@@ -48,7 +48,7 @@ public class ProductController extends HttpServlet {
         switch (action) {
             case "create":
                 // Show create form
-                resp.sendRedirect("create.jsp");
+                resp.sendRedirect("product/create.jsp");
                 break;
 
             case "process-create":
@@ -82,7 +82,7 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
         List<Product> list = productDal.findAll();
         req.setAttribute("list", list);
-        req.getRequestDispatcher("product-list.jsp").forward(req, resp);
+        req.getRequestDispatcher("product/index.jsp").forward(req, resp);
     }
 
     /** Handles product creation: upload image then INSERT into DB */
@@ -105,7 +105,7 @@ public class ProductController extends HttpServlet {
         String code = req.getParameter("code");
         Product product = productDal.findByCode(code);
         req.setAttribute("product", product);
-        req.getRequestDispatcher("update.jsp").forward(req, resp);
+        req.getRequestDispatcher("product/update.jsp").forward(req, resp);
     }
 
     /** Handles product update: optionally re-upload image then UPDATE DB */
@@ -137,7 +137,7 @@ public class ProductController extends HttpServlet {
         String query = req.getParameter("txtSearch");
         List<Product> list = productDal.findByName(query);
         req.setAttribute("list", list);
-        req.getRequestDispatcher("product-list.jsp").forward(req, resp);
+        req.getRequestDispatcher("product/index.jsp").forward(req, resp);
     }
 
     /**
