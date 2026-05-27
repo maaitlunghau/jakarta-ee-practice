@@ -75,6 +75,21 @@ public class BrandBean {
     }
 
     // 4.2. create() method
+    public void create(BrandBean bean) {
+        EntityManager em = BrandDal.getEM();
+
+        try {
+            em.getTransaction().begin();
+
+            // handling
+            em.persist(bean);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw new RuntimeException(e);
+        }
+    }
 
     // 4.3. update() method
 
