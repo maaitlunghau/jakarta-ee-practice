@@ -5,19 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.fpt</groupId>
-    <artifactId>assignment_1</artifactId>
+    <artifactId>practice_exam</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>assignment_1</name>
+    <name>practice_exam</name>
     <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>8</maven.compiler.target>
-        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
         <junit.version>5.13.2</junit.version>
     </properties>
 
     <dependencies>
+        <!-- Servlet API -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -25,12 +26,14 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Persistence  -->
+        <!-- JPA API -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <version>3.1.0</version>
         </dependency>
+
+        <!-- Hibernate (JPA Provider) -->
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
