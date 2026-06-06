@@ -1,6 +1,9 @@
 package com.fpt.exam_wcd.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tbBook")
@@ -10,15 +13,19 @@ public class Book {
     @Column(name = "id")
     private int id;
 
+    @NotBlank(message = "Title cannot be blank")
     @Column(name = "title", length = 100)
     private String title;
 
+    @NotBlank(message = "Author cannot be blank")
     @Column(name = "author", length = 60)
     private String author;
 
+    @Min(value = 1, message = "Edition must be at least 1")
     @Column(name = "edition")
     private int edition;
 
+    @NotBlank(message = "Please upload a photo")
     @Column(name = "photo", length = 150)
     private String photo;
 
@@ -32,7 +39,6 @@ public class Book {
         this.photo = photo;
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getTitle() { return title; }

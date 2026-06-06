@@ -9,7 +9,7 @@ public class DBConnection {
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/exam_wcd?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh";
         String user = "root";
-        String pass = "112233"; // Theo cấu hình từ project trước
+        String pass = "112233";
         return DriverManager.getConnection(url, user, pass);
     }
 }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.Map" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,31 +15,47 @@
         }
         .btn { background-color: #333; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 16px; }
         .btn:hover { background-color: #555; }
-        .error { color: red; margin-bottom: 10px; }
+        .error { color: #d93025; font-size: 12px; margin-top: 5px; }
+        .general-error { color: white; background: #d93025; padding: 10px; border-radius: 4px; margin-bottom: 15px; text-align: center; }
     </style>
 </head>
 <body>
     <div class="card">
         <h2>Add new Book</h2>
-        <% if("empty".equals(request.getParameter("error"))) { %>
-            <div class="error">Title and Author cannot be empty!</div>
+        
+        <% Map<String, String> errors = (Map<String, String>) request.getAttribute("errors"); %>
+        <% if (request.getAttribute("error") != null) { %>
+            <div class="general-error"><%= request.getAttribute("error") %></div>
         <% } %>
+
         <form action="BookServlet" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Enter title:</label>
-                <input type="text" name="txtTitle" required>
+                <input type="text" name="txtTitle" value="<%= request.getParameter("txtTitle") != null ? request.getParameter("txtTitle") : "" %>">
+                <% if(errors != null && errors.containsKey("title")) { %>
+                    <div class="error"><%= errors.get("title") %></div>
+                <% } %>
             </div>
             <div class="form-group">
                 <label>Enter author:</label>
-                <input type="text" name="txtAuthor" required>
+                <input type="text" name="txtAuthor" value="<%= request.getParameter("txtAuthor") != null ? request.getParameter("txtAuthor") : "" %>">
+                <% if(errors != null && errors.containsKey("author")) { %>
+                    <div class="error"><%= errors.get("author") %></div>
+                <% } %>
             </div>
             <div class="form-group">
                 <label>Enter edition:</label>
-                <input type="number" name="txtEdition">
+                <input type="number" name="txtEdition" value="<%= request.getParameter("txtEdition") != null ? request.getParameter("txtEdition") : "" %>">
+                <% if(errors != null && errors.containsKey("edition")) { %>
+                    <div class="error"><%= errors.get("edition") %></div>
+                <% } %>
             </div>
             <div class="form-group">
                 <label>Upload file:</label>
                 <input type="file" name="filePhoto">
+                <% if(errors != null && errors.containsKey("photo")) { %>
+                    <div class="error"><%= errors.get("photo") %></div>
+                <% } %>
             </div>
             <button type="submit" class="btn">Create</button>
             <a href="index.jsp" style="margin-left: 20px; text-decoration: none; color: #666;">Cancel</a>
@@ -46,3 +63,4 @@
     </div>
 </body>
 </html>
+
