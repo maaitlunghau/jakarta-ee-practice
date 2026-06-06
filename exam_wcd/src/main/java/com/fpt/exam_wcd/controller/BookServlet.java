@@ -10,9 +10,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @WebServlet(name = "BookServlet", urlPatterns = {"/BookServlet"})
 @MultipartConfig(
@@ -27,7 +35,6 @@ public class BookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        // find All books to show in index.jsp
         List<Book> list = bookBean.findAll();
         request.setAttribute("books", list);
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -37,7 +44,7 @@ public class BookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        // 1. Receive parameters from create.jsp
+        // 1. Receive parameters
         String title = request.getParameter("txtTitle");
         String author = request.getParameter("txtAuthor");
         String editionStr = request.getParameter("txtEdition");
@@ -53,27 +60,32 @@ public class BookServlet extends HttpServlet {
             part.write(uploadPath + File.separator + fileName);
         }
 
-        // 3. Validation all fields not blank (1 mark)
-        if (title != null && !title.trim().isEmpty() && 
-            author != null && !author.trim().isEmpty() &&
-            editionStr != null && !editionStr.trim().isEmpty() &&
-            fileName != null && !fileName.isEmpty()) {
-            int edition = 0;
-            try {
-                edition = Integer.parseInt(editionStr);
-            } catch (NumberFormatException e) {}
+        // 3. Validation
+        Book newBook = new Book(0, title, author, 0, fileName);
+        try {
+            newBook.setEdition(Integer.parseInt(editionStr));
+        } catch (NumberFormatException e) {}
 
-            Book newBook = new Book(0, title, author, edition, fileName);
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Book>> violations = validator.validate(newBook);
+
+        if (violations.isEmpty()) {
             boolean success = bookBean.createBook(newBook);
-            
             if (success) {
-                // If successful, the index.jsp page will be displayed
                 response.sendRedirect("BookServlet");
             } else {
-                response.sendRedirect("create.jsp?error=1");
+                request.setAttribute("error", "Database error occurred.");
+                request.getRequestDispatcher("create.jsp").forward(request, response);
             }
         } else {
-            response.sendRedirect("create.jsp?error=empty");
+            // Collect error messages
+            Map<String, String> errors = new HashMap<>();
+            for (ConstraintViolation<Book> violation : violations) {
+                errors.put(violation.getPropertyPath().toString(), violation.getMessage());
+            }
+            request.setAttribute("errors", errors);
+            request.getRequestDispatcher("create.jsp").forward(request, response);
         }
     }
 }

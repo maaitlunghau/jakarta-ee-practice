@@ -9,10 +9,10 @@ import java.util.List;
 
 public class BookBean {
 
-    // use JDBC API to view data in database
     public List<Book> findAll() {
         List<Book> list = new ArrayList<>();
         String sql = "SELECT * FROM tbBook";
+
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -29,10 +29,10 @@ public class BookBean {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return list;
     }
 
-    // use JDBC API to store data in database
     public boolean createBook(Book newBook) {
         String sql = "INSERT INTO tbBook (title, author, edition, photo) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
